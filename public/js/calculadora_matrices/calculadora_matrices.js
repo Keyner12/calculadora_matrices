@@ -65,14 +65,14 @@ let vue_calculadora_matrices = new Vue({
             this.resultado = this.matrizA.map((fila, i) => fila.map((valor, j) => parseFloat(valor) - parseFloat(this.matrizB[i][j]) || 0));
         },
         multiplicarMatrices() {
-            // if (this.columnas != this.filas) {
-            //     Swal.fire({
-            //         icon: 'warning',
-            //         title: 'Error',
-            //         text: 'El número de columnas de A debe ser igual al número de filas de B',
-            //     });
-            //     return;
-            // }
+            if (this.columnas != this.filas) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Error',
+                    text: 'El número de columnas de A debe ser igual al número de filas de B',
+                });
+                return;
+            }
             this.btnActivo = 'multiplicacion';
             let resultado = Array.from({ length: this.filas }, () => Array(this.columnas).fill(0));
             for (let i = 0; i < this.filas; i++) {

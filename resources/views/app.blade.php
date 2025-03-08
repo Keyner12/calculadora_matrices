@@ -103,7 +103,7 @@
                                     <div v-for="(fila, i) in getMatriz('A')" :key="i" class="text-center">
                                         <input type="number" @focus="seleccionarTexto" v-for="(valor, j) in fila" :key="j"
                                             v-model="getMatriz('A')[i][j]"
-                                            class="form-control d-inline-block m-1 text-center"
+                                            class="form-control d-inline-block m-1 text-center px-1"
                                             :style="{ width: '50px', height: '50px' }">
                                     </div>
                                 </div>
@@ -143,7 +143,7 @@
                                     <div v-for="(fila, i) in getMatriz('B')" :key="i" class="text-center">
                                         <input type="number" @focus="seleccionarTexto" v-for="(valor, j) in fila" :key="j"
                                             v-model="getMatriz('B')[i][j]"
-                                            class="form-control d-inline-block m-1 text-center"
+                                            class="form-control d-inline-block m-1 text-center px-1"
                                             :style="{ width: '50px', height: '50px' }">
                                     </div>
                                 </div>
