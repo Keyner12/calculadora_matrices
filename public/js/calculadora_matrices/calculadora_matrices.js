@@ -1,8 +1,10 @@
 let vue_calculadora_matrices = new Vue({
     el: '#app',
     data: {
-        filas: 2,
-        columnas: 2,
+        filasA: 2,
+        columnasA: 2,
+        filasB: 2,
+        columnasB: 2,
         matrizA: [],
         matrizB: [],
         resultado: [],
@@ -12,12 +14,12 @@ let vue_calculadora_matrices = new Vue({
     },
     methods: {
         inicializarMatrices() {
-            this.matrizA = this.crearMatriz();
-            this.matrizB = this.crearMatriz();
-            this.resultado = this.crearMatriz();
+            this.matrizA = this.crearMatriz(this.filasA, this.columnasA);
+            this.matrizB = this.crearMatriz(this.filasB, this.columnasB);
+            this.resultado = [];
         },
-        crearMatriz() {
-            return Array.from({ length: this.filas }, () => Array(this.columnas).fill(0));
+        crearMatriz(filas, columnas) {
+            return Array.from({ length: filas }, () => Array(columnas).fill(0));
         },
         getMatriz(matriz) {
             return matriz == 'A' ? this.matrizA : this.matrizB;
@@ -25,59 +27,76 @@ let vue_calculadora_matrices = new Vue({
         validarEntrada(event, matriz, i, j) {
             let valor = event.target.value;
 
-            // Permitir solo números, coma decimal y fracción con barra /
             valor = valor.replace(/[^0-9,/-]/g, '');
-
-            // Reemplazar comas por puntos para decimales
             valor = valor.replace(/,/g, '.');
 
-            // Convertir fracciones a decimales (ej: "1/2" -> 0.5)
             if (valor.includes('/')) {
                 let partes = valor.split('/');
                 if (partes.length == 2 && partes[1] != '0') {
                     let numerador = parseFloat(partes[0]);
                     let denominador = parseFloat(partes[1]);
                     if (!isNaN(numerador) && !isNaN(denominador)) {
-                        valor = (numerador / denominador).toFixed(6); // Redondear a 6 decimales
+                        valor = (numerador / denominador).toFixed(6);
                     }
                 } else {
-                    valor = ''; // Si la fracción no es válida, limpiar el campo
+                    valor = '';
                 }
             }
 
-            // Asignar el valor corregido a la matriz correspondiente
             if (matriz == 'A') {
-                this.matrizA[i][j] = valor;
+                this.$set(this.matrizA[i], j, valor);
             } else {
-                this.matrizB[i][j] = valor;
+                this.$set(this.matrizB[i], j, valor);
             }
         },
         intercambiarMatrices() {
             this.btnActivo = 'intercambiar';
-            [this.matrizA, this.matrizB] = [this.matrizB, this.matrizA]; // Intercambia las matrices
+            [this.matrizA, this.matrizB] = [this.matrizB, this.matrizA];
+            [this.filasA, this.filasB] = [this.filasB, this.filasA];
+            [this.columnasA, this.columnasB] = [this.columnasB, this.columnasA];
         },
         sumarMatrices() {
             this.btnActivo = 'suma';
-            this.resultado = this.matrizA.map((fila, i) => fila.map((valor, j) => parseFloat(valor) + parseFloat(this.matrizB[i][j]) || 0));
-        },
-        restarMatrices() {
-            this.btnActivo = 'resta';
-            this.resultado = this.matrizA.map((fila, i) => fila.map((valor, j) => parseFloat(valor) - parseFloat(this.matrizB[i][j]) || 0));
-        },
-        multiplicarMatrices() {
-            if (this.columnas != this.filas) {
+            if (this.filasA !== this.filasB || this.columnasA !== this.columnasB) {
                 Swal.fire({
                     icon: 'warning',
-                    title: 'Error',
+                    title: 'Alerta',
+                    text: 'Para sumar matrices, ambas deben tener las mismas dimensiones.',
+                });
+                return;
+            }
+            this.resultado = this.matrizA.map((fila, i) => fila.map((valor, j) => parseFloat(valor) + parseFloat(this.matrizB[i][j]) || 0));
+        },
+
+        restarMatrices() {
+            this.btnActivo = 'resta';
+            if (this.filasA !== this.filasB || this.columnasA !== this.columnasB) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Alerta',
+                    text: 'Para restar matrices, ambas deben tener las mismas dimensiones.',
+                });
+                return;
+            }
+            this.resultado = this.matrizA.map((fila, i) => fila.map((valor, j) => parseFloat(valor) - parseFloat(this.matrizB[i][j]) || 0));
+        },
+
+        multiplicarMatrices() {
+            if (this.columnasA != this.filasB) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Alerta',
                     text: 'El número de columnas de A debe ser igual al número de filas de B',
                 });
                 return;
             }
             this.btnActivo = 'multiplicacion';
-            let resultado = Array.from({ length: this.filas }, () => Array(this.columnas).fill(0));
-            for (let i = 0; i < this.filas; i++) {
-                for (let j = 0; j < this.columnas; j++) {
-                    resultado[i][j] = this.matrizA[i].reduce((sum, val, k) => sum + val * this.matrizB[k][j], 0);
+            let resultado = Array.from({ length: this.filasA }, () => Array(this.columnasB).fill(0));
+            for (let i = 0; i < this.filasA; i++) {
+                for (let j = 0; j < this.columnasB; j++) {
+                    for (let k = 0; k < this.columnasA; k++) {
+                        resultado[i][j] += parseFloat(this.matrizA[i][k] || 0) * parseFloat(this.matrizB[k][j] || 0);
+                    }
                 }
             }
             this.resultado = resultado;
@@ -98,19 +117,31 @@ let vue_calculadora_matrices = new Vue({
         seleccionarTexto(event) {
             event.target.select();
         },
-        decrementarFilas() {
-            if (this.filas > 1) this.filas--;
+        decrementarFilasA() {
+            if (this.filasA > 1) this.filasA--;
         },
-        decrementarColumnas() {
-            if (this.columnas > 1) this.columnas--;
+        decrementarColumnasA() {
+            if (this.columnasA > 1) this.columnasA--;
+        },
+        decrementarFilasB() {
+            if (this.filasB > 1) this.filasB--;
+        },
+        decrementarColumnasB() {
+            if (this.columnasB > 1) this.columnasB--;
         },
     },
     watch: {
-        filas() {
-            this.inicializarMatrices();
+        filasA() {
+            this.matrizA = this.crearMatriz(this.filasA, this.columnasA);
         },
-        columnas() {
-            this.inicializarMatrices();
+        columnasA() {
+            this.matrizA = this.crearMatriz(this.filasA, this.columnasA);
+        },
+        filasB() {
+            this.matrizB = this.crearMatriz(this.filasB, this.columnasB);
+        },
+        columnasB() {
+            this.matrizB = this.crearMatriz(this.filasB, this.columnasB);
         },
     },
     mounted() {

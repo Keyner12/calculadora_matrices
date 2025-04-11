@@ -64,32 +64,66 @@
                 <div class="card-body text-center" >
                     <!-- Tamaño de la matriz -->
                     <div class="row">
-                        <!-- Filas -->
-                        <div class="col-5 mb-4 text-center">
-                            <h4>Filas:</h4>
-                            <div class="input-step-wrapper" style="display: flex; justify-content: center; flex-direction: column; align-items: center; margin-top: 10px;">
-                                <div class="input-step" style="display: flex; align-items: center; width: 40%; height: 40px;">
-                                    <button type="button" class="minus" style="margin-right: 5px; font-size: 25px;" @click="decrementarFilas">–</button>
-                                    <input type="number" class="product-quantity" style="width: 90%; text-align: center; font-size: 15px;" @focus="seleccionarTexto" v-model="filas">
-                                    <button type="button" class="plus" style="margin-left: 5px; font-size: 25px;" @click="filas++">+</button>
+                        <!-- Matriz A -->
+                        <div class="col-6">
+                            <div class="row">
+                                <!-- Filas A -->
+                                <div class="col-6 mb-4 text-center">
+                                    <h4>Filas A:</h4>
+                                    <div class="input-step-wrapper d-flex flex-column align-items-center mt-2">
+                                        <div class="input-step d-flex align-items-center" style="width: 80%; height: 40px;">
+                                            <button type="button" class="minus me-2 fs-3" @click="filasA > 1 && filasA--">–</button>
+                                            <input type="number" class="product-quantity text-center fs-6 flex-grow-1" @focus="seleccionarTexto" v-model="filasA">
+                                            <button type="button" class="plus ms-2 fs-3" @click="filasA++">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Columnas A -->
+                                <div class="col-6 mb-4 text-center">
+                                    <h4>Columnas A:</h4>
+                                    <div class="input-step-wrapper d-flex flex-column align-items-center mt-2">
+                                        <div class="input-step d-flex align-items-center" style="width: 80%; height: 40px;">
+                                            <button type="button" class="minus me-2 fs-3" @click="columnasA > 1 && columnasA--">–</button>
+                                            <input type="number" class="product-quantity text-center fs-6 flex-grow-1" @focus="seleccionarTexto" v-model="columnasA">
+                                            <button type="button" class="plus ms-2 fs-3" @click="columnasA++">+</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-2 mb-4 text-center">
-                        </div>
-                        <!-- Columnas -->
-                        <div class="col-5 mb-4 text-center">
-                            <h4>Columnas:</h4>
-                            <div class="input-step-wrapper" style="display: flex; justify-content: center; flex-direction: column; align-items: center; margin-top: 10px;">
-                                <div class="input-step" style="display: flex; align-items: center; width: 40%; height: 40px;">
-                                    <button type="button" class="minus" style="margin-right: 5px; font-size: 25px;" @click="decrementarColumnas">–</button>
-                                    <input type="number" class="product-quantity" style="width: 90%; text-align: center; font-size: 15px;" @focus="seleccionarTexto" v-model="columnas">
-                                    <button type="button" class="plus" style="margin-left: 5px; font-size: 25px;" @click="columnas++">+</button>
+                        <!-- Matriz B -->
+                        <div class="col-6">
+                            <div class="row">
+                                <!-- Filas B -->
+                                <div class="col-6 mb-4 text-center">
+                                    <h4>Filas B:</h4>
+                                    <div class="input-step-wrapper d-flex flex-column align-items-center mt-2">
+                                        <div class="input-step d-flex align-items-center" style="width: 80%; height: 40px;">
+                                            <button type="button" class="minus me-2 fs-3" @click="filasB > 1 && filasB--">–</button>
+                                            <input type="number" class="product-quantity text-center fs-6 flex-grow-1" @focus="seleccionarTexto" v-model="filasB">
+                                            <button type="button" class="plus ms-2 fs-3" @click="filasB++">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Columnas B -->
+                                <div class="col-6 mb-4 text-center">
+                                    <h4>Columnas B:</h4>
+                                    <div class="input-step-wrapper d-flex flex-column align-items-center mt-2">
+                                        <div class="input-step d-flex align-items-center" style="width: 80%; height: 40px;">
+                                            <button type="button" class="minus me-2 fs-3" @click="columnasB > 1 && columnasB--">–</button>
+                                            <input type="number" class="product-quantity text-center fs-6 flex-grow-1" @focus="seleccionarTexto" v-model="columnasB">
+                                            <button type="button" class="plus ms-2 fs-3" @click="columnasB++">+</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
 
 
 
