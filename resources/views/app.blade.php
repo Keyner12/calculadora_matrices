@@ -24,7 +24,7 @@
             background-size: 20px 20px !important;
         }
         .auth-one-bg {
-            background: linear-gradient(to right, #0b4897, #6495ed, #0b4897) !important;
+            background: linear-gradient(to right, #efa729,#f7b84bd1, #efa729) !important;
             background-position: center;
             background-size: cover;
         }
@@ -41,7 +41,7 @@
             background-color: #ffffff !important; /* Cambia el color de fondo */
         }
         .btn-active {
-            border: 2px solid #687cfe !important;
+            border: 3px solid #f7b84b !important;
             background-color: #cfd1d4 !important;
         }
     </style>
@@ -57,7 +57,7 @@
                     </svg>
                 </div>
             </div>
-            <div class="card mx-auto col-12">
+            <div class="card mx-auto col-12" style="background: black !important;">
                 <!-- <div class="card-header text-center">
                     <h2>Calculadora de Matrices</h2>
                 </div> -->
@@ -69,11 +69,11 @@
                             <div class="row">
                                 <!-- Filas A -->
                                 <div class="col-6 mb-4 text-center">
-                                    <h4>Filas A:</h4>
+                                    <h4 style="color: #f7b84b !important;">Filas A:</h4>
                                     <div class="input-step-wrapper d-flex flex-column align-items-center mt-2">
                                         <div class="input-step d-flex align-items-center" style="width: 80%; height: 40px;">
                                             <button type="button" class="minus me-2 fs-3" @click="filasA > 1 && filasA--">–</button>
-                                            <input type="number" class="product-quantity text-center fs-6 flex-grow-1" @focus="seleccionarTexto" v-model="filasA">
+                                            <input type="number" class="product-quantity text-center fs-5 flex-grow-1" @focus="seleccionarTexto" v-model="filasA">
                                             <button type="button" class="plus ms-2 fs-3" @click="filasA++">+</button>
                                         </div>
                                     </div>
@@ -81,11 +81,11 @@
 
                                 <!-- Columnas A -->
                                 <div class="col-6 mb-4 text-center">
-                                    <h4>Columnas A:</h4>
+                                    <h4 style="color: #f7b84b !important;">Columnas A:</h4>
                                     <div class="input-step-wrapper d-flex flex-column align-items-center mt-2">
                                         <div class="input-step d-flex align-items-center" style="width: 80%; height: 40px;">
                                             <button type="button" class="minus me-2 fs-3" @click="columnasA > 1 && columnasA--">–</button>
-                                            <input type="number" class="product-quantity text-center fs-6 flex-grow-1" @focus="seleccionarTexto" v-model="columnasA">
+                                            <input type="number" class="product-quantity text-center fs-5 flex-grow-1" @focus="seleccionarTexto" v-model="columnasA">
                                             <button type="button" class="plus ms-2 fs-3" @click="columnasA++">+</button>
                                         </div>
                                     </div>
@@ -98,11 +98,11 @@
                             <div class="row">
                                 <!-- Filas B -->
                                 <div class="col-6 mb-4 text-center">
-                                    <h4>Filas B:</h4>
+                                    <h4 style="color: #f7b84b !important;">Filas B:</h4>
                                     <div class="input-step-wrapper d-flex flex-column align-items-center mt-2">
                                         <div class="input-step d-flex align-items-center" style="width: 80%; height: 40px;">
                                             <button type="button" class="minus me-2 fs-3" @click="filasB > 1 && filasB--">–</button>
-                                            <input type="number" class="product-quantity text-center fs-6 flex-grow-1" @focus="seleccionarTexto" v-model="filasB">
+                                            <input type="number" class="product-quantity text-center fs-5 flex-grow-1" @focus="seleccionarTexto" v-model="filasB">
                                             <button type="button" class="plus ms-2 fs-3" @click="filasB++">+</button>
                                         </div>
                                     </div>
@@ -110,11 +110,11 @@
 
                                 <!-- Columnas B -->
                                 <div class="col-6 mb-4 text-center">
-                                    <h4>Columnas B:</h4>
+                                    <h4 style="color: #f7b84b !important;">Columnas B:</h4>
                                     <div class="input-step-wrapper d-flex flex-column align-items-center mt-2">
                                         <div class="input-step d-flex align-items-center" style="width: 80%; height: 40px;">
                                             <button type="button" class="minus me-2 fs-3" @click="columnasB > 1 && columnasB--">–</button>
-                                            <input type="number" class="product-quantity text-center fs-6 flex-grow-1" @focus="seleccionarTexto" v-model="columnasB">
+                                            <input type="number" class="product-quantity text-center fs-5 flex-grow-1" @focus="seleccionarTexto" v-model="columnasB">
                                             <button type="button" class="plus ms-2 fs-3" @click="columnasB++">+</button>
                                         </div>
                                     </div>
@@ -131,38 +131,57 @@
                     <div class="row d-flex justify-content-center align-items-start">
                         <!-- Matriz A -->
                         <div class="mb-4 col-lg-5">
-                            <h4>A</h4>
+                            <h4 style="color: #f7b84b !important;">A</h4>
                             <div class="d-flex justify-content-center align-items-center">
                                 <div class="matriz-container">
                                     <div v-for="(fila, i) in getMatriz('A')" :key="i" class="text-center">
                                         <input type="number" @focus="seleccionarTexto" v-for="(valor, j) in fila" :key="j"
                                             v-model="getMatriz('A')[i][j]"
-                                            class="form-control d-inline-block m-1 text-center px-1"
+                                            class="form-control d-inline-block m-1 text-center px-1 fs-5"
                                             :style="{ width: '50px', height: '50px' }">
                                     </div>
                                 </div>
                             </div>
-                            <div class="mt-3 col-12 d-flex justify-content-center gap-3">
-                                <button @click="transponerMatriz('A')" class="btn btn-light" :class="{'btn-active': btnActivo == 'transpuesta-A'}">Transpuesta</button>
+                            <<div class="mt-3 col-12 ">
+                                <div class="row">
+                                    <div class="col-12 d-flex justify-content-center gap-3">
+                                        <button @click="transponerMatriz('A')" class="btn btn-light" :class="{'btn-active': btnActivo == 'transpuesta-A'}">Transpuesta</button>
 
-                                <div class="d-flex align-items-center gap-2">
-                                    <button @click="multiplicarPorEscalar('A')" class="btn btn-light" :class="{'btn-active': btnActivo == 'escalar-A'}">Escalar Por</button>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <button @click="multiplicarPorEscalar('A')" class="btn btn-light" :class="{'btn-active': btnActivo == 'escalar-A'}">Escalar Por</button>
 
-                                    <!-- Contenedor del input con botones al estilo de la Matriz B -->
-                                    <div class="input-step-wrapper" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
-                                        <div class="input-step" style="display: flex; align-items: center; width: 110px; height: 40px;">
-                                            <button type="button" class="minus" style="margin-right: 5px; font-size: 25px;" @click="escalarA--">–</button>
-                                            <input type="number" class="product-quantity" style="width: 90%; text-align: center; font-size: 15px;" @focus="seleccionarTexto" v-model="escalarA">
-                                            <button type="button" class="plus" style="margin-left: 5px; font-size: 25px;" @click="escalarA++">+</button>
+                                            <!-- Contenedor del input con botones al estilo de la Matriz B -->
+                                            <div class="input-step-wrapper" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+                                                <div class="input-step" style="display: flex; align-items: center; width: 110px; height: 40px;">
+                                                    <button type="button" class="minus" style="margin-right: 5px; font-size: 25px;" @click="escalarA--">–</button>
+                                                    <input type="number" class="product-quantity" style="width: 90%; text-align: center; font-size: 15px;" @focus="seleccionarTexto" v-model="escalarA">
+                                                    <button type="button" class="plus" style="margin-left: 5px; font-size: 25px;" @click="escalarA++">+</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class=" mt-3 col-12 d-flex justify-content-center gap-3">
+                                        <button @click="inversa('A')" class="btn btn-light" :class="{'btn-active': btnActivo == 'inversa-A'}">Inversa</button>
+                                        <button @click="potencia('A')" class="btn btn-light" :class="{'btn-active': btnActivo == 'potencia-A'}">Potencia Por</button>
+                                        <div class="input-step-wrapper" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+                                            <div class="input-step" style="display: flex; align-items: center; width: 110px; height: 40px;">
+                                                <button type="button" class="minus" style="margin-right: 5px; font-size: 25px;" @click="potenciaA--">–</button>
+                                                <input type="number" class="product-quantity" style="width: 90%; text-align: center; font-size: 15px;" @focus="seleccionarTexto" v-model="potenciaA">
+                                                <button type="button" class="plus" style="margin-left: 5px; font-size: 25px;" @click="potenciaA++">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 col-12 d-flex justify-content-center gap-3">
+                                        <button @click="determinante('A')" class="btn btn-light" :class="{'btn-active': btnActivo == 'determinante-A'}">Determinante</button>
+                                    </div>
                                 </div>
+
                             </div>
 
                         </div>
                         <!-- Botones en el centro de y Intercambiar, suma, resta y multiplicación -->
                         <div class="col-lg-2 mb-3 d-flex flex-column justify-content-center align-self-stretch align-items-center">
-                            <button @click="intercambiarMatrices" class="btn my-1 btn-light"  :class="{'btn-active': btnActivo === 'intercambiar'}" style="width: 80px;"><i class="ri-arrow-left-right-line"></i></button>
+                            <button @click="intercambiarMatrices" class="btn my-1 btn-light"  :class="{'btn-active': btnActivo === 'intercambiar'}" style="width: 80px;"><i class="ri-arrow-left-right-line "></i></button>
                             <button @click="sumarMatrices" class="btn my-1 btn-light" :class="{'btn-active': btnActivo === 'suma'}" style="width: 80px;"> A <i class="ri-add-fill"></i> B</button>
                             <button @click="restarMatrices" class="btn my-1 btn-light" :class="{'btn-active': btnActivo === 'resta'}" style="width: 80px;"> A <i class="ri-subtract-fill"></i> B</button>
                             <button @click="multiplicarMatrices" class="btn my-1 btn-light" :class="{'btn-active': btnActivo === 'multiplicacion'}" style="width: 80px;"> A <i class="ri-close-line"></i> B</button>
@@ -171,26 +190,45 @@
 
                         <!-- Matriz B -->
                         <div class="mb-3 col-lg-5">
-                            <h4>B</h4>
+                            <h4 style="color: #f7b84b !important;">B</h4>
                             <div class="d-flex justify-content-center align-items-center">
                                 <div class="matriz-container">
                                     <div v-for="(fila, i) in getMatriz('B')" :key="i" class="text-center">
                                         <input type="number" @focus="seleccionarTexto" v-for="(valor, j) in fila" :key="j"
                                             v-model="getMatriz('B')[i][j]"
-                                            class="form-control d-inline-block m-1 text-center px-1"
+                                            class="form-control d-inline-block m-1 text-center px-1 fs-5"
                                             :style="{ width: '50px', height: '50px' }">
                                     </div>
                                 </div>
                             </div>
-                            <div class="mt-3 col-12 d-flex justify-content-center gap-3">
-                                <button @click="transponerMatriz('B')" class="btn btn-light" :class="{'btn-active': btnActivo == 'transpuesta-B'}">Transpuesta</button>
-                                <div class="d-flex align-items-center gap-2">
-                                <button @click="multiplicarPorEscalar('B')" class="btn btn-light" :class="{'btn-active': btnActivo == 'escalar-B'}">Escalar Por</button>
-                                <div class="input-step-wrapper" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
-                                    <div class="input-step" style="display: flex; align-items: center; width: 110px; height: 40px;">
-                                        <button type="button" class="minus" style="margin-right: 5px; font-size: 25px;" @click="escalarB--">–</button>
-                                        <input type="number" class="product-quantity" style="width: 90%; text-align: center; font-size: 15px;" @focus="seleccionarTexto" v-model="escalarB">
-                                        <button type="button" class="plus" style="margin-left: 5px; font-size: 25px;" @click="escalarB++">+</button>
+                            <div class="mt-3 col-12 ">
+                                <div class="row">
+                                    <div class="col-12 d-flex justify-content-center gap-3">
+                                        <button @click="transponerMatriz('B')" class="btn btn-light" :class="{'btn-active': btnActivo == 'transpuesta-B'}">Transpuesta</button>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <button @click="multiplicarPorEscalar('B')" class="btn btn-light" :class="{'btn-active': btnActivo == 'escalar-B'}">Escalar Por</button>
+                                            <div class="input-step-wrapper" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+                                                <div class="input-step" style="display: flex; align-items: center; width: 110px; height: 40px;">
+                                                    <button type="button" class="minus" style="margin-right: 5px; font-size: 25px;" @click="escalarB--">–</button>
+                                                    <input type="number" class="product-quantity" style="width: 90%; text-align: center; font-size: 15px;" @focus="seleccionarTexto" v-model="escalarB">
+                                                    <button type="button" class="plus" style="margin-left: 5px; font-size: 25px;" @click="escalarB++">+</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 col-12 d-flex justify-content-center gap-3">
+                                        <button @click="inversa('B')" class="btn btn-light" :class="{'btn-active': btnActivo == 'inversa-B'}">Inversa</button>
+                                        <button @click="potencia('B')" class="btn btn-light" :class="{'btn-active': btnActivo == 'potencia-B'}">Potencia Por</button>
+                                        <div class="input-step-wrapper" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+                                            <div class="input-step" style="display: flex; align-items: center; width: 110px; height: 40px;">
+                                                <button type="button" class="minus" style="margin-right: 5px; font-size: 25px;" @click="potenciaB--">–</button>
+                                                <input type="number" class="product-quantity" style="width: 90%; text-align: center; font-size: 15px;" @focus="seleccionarTexto" v-model="potenciaB">
+                                                <button type="button" class="plus" style="margin-left: 5px; font-size: 25px;" @click="potenciaB++">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 col-12 d-flex justify-content-center gap-3">
+                                        <button @click="determinante('B')" class="btn btn-light" :class="{'btn-active': btnActivo == 'determinante-B'}">Determinante</button>
                                     </div>
                                 </div>
                             </div>
@@ -199,14 +237,16 @@
                         </div>
                     </div>
 
-                    <!-- Resultado -->
-                    <h4 class="mt-4 text-center">Resultado</h4>
-                    <div v-for="fila in resultado" class="text-center">
-                        <span v-for="valor in fila"
-                            class="border p-2 d-inline-block m-1"
-                            style="width: 50px; background-color: white;">
-                            @{{ valor }}
-                        </span>
+                    <div class="mb-4">
+                        <!-- Resultado -->
+                        <h4 class="mt-4 text-center" style="color: #f7b84b !important;">Resultado</h4>
+                        <div v-for="fila in resultado" class="text-center">
+                            <span v-for="valor in fila"
+                                class="border p-2 d-inline-block m-1 fs-5"
+                                style="min-width: 60px; background-color: white;">
+                                @{{ valor }}
+                            </span>
+                        </div>
                     </div>
 
                 </div>
