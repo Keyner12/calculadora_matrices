@@ -38,7 +38,7 @@ let vue_calculadora_matrices = new Vue({
                     let numerador = parseFloat(partes[0]);
                     let denominador = parseFloat(partes[1]);
                     if (!isNaN(numerador) && !isNaN(denominador)) {
-                        valor = (numerador / denominador).toFixed(6);
+                        valor = (numerador / denominador).toFixed(2);
                     }
                 } else {
                     valor = '';
@@ -260,7 +260,7 @@ let vue_calculadora_matrices = new Vue({
             }
         
             // Redondear a un número específico de decimales (por ejemplo, 6 decimales)
-            det = parseFloat(det.toFixed(6));
+            det = parseFloat(det.toFixed(2));
         
             // Mostrar el resultado como una matriz 1x1
             this.resultado = [[det]];
@@ -370,7 +370,7 @@ let vue_calculadora_matrices = new Vue({
                     return Math.round(val);
                 }
                 // De lo contrario, redondear a 6 decimales
-                return parseFloat(val.toFixed(6));
+                return parseFloat(val.toFixed(2));
             }));
             
             this.resultado = matrizInversa;
