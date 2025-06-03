@@ -13,6 +13,7 @@ let vue_calculadora_matrices = new Vue({
         potenciaA: 0,
         potenciaB: 0,
         btnActivo: '',
+        tabActivo: "matrices",
     },
     methods: {
         inicializarMatrices() {
@@ -413,7 +414,9 @@ let vue_calculadora_matrices = new Vue({
         decrementarColumnasB() {
             if (this.columnasB > 1) this.columnasB--;
         },
-
+        CambiarTab(tab) {
+            this.tabActivo = tab;
+        },
     },
     watch: {
         filasA() {
